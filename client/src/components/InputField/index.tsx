@@ -4,30 +4,32 @@ import { TextField } from '@mui/material';
 interface propTypes {
   id: string,
   label: string,
+  type: string,
+  name: string,
+  className?: string,
   value: string,
   helperText?: string,
-  onChange: React.ChangeEventHandler<HTMLInputElement>
+  onChange: React.ChangeEventHandler<HTMLInputElement>,
+  autoComplete?: "on" | "off", 
+  required?: boolean,
 }
 
 const InputField = (props: propTypes) => {
-  const {id, label, value, helperText, onChange} = props;
+  const {id, label, type, name, className, value, helperText, onChange, autoComplete, required} = props;
   return (
     <>
       <TextField
         id={id}
         label={label}
+        type={type}
+        name={name}
+        className={className}
         value={value}
         helperText={helperText}
         onChange={onChange}
+        autoComplete={autoComplete}
+        required={required}
       />
-      {/* <TextField
-        id="outlined-controlled"
-        label="Controlled"
-        value={name}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setName(event.target.value);
-        }}
-      /> */}
     </>
   )
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from '../styles/Login.module.css'
+import styles from '../styles/Signup.module.css'
 
 import Form from '../components/Form'
 import InputField from '../components/InputField'
@@ -7,8 +7,10 @@ import { IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/mate
 import CustomButton from '../components/CustomButton'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
 
-const Login = () => {
-    const [loginFormData, setLoginFormData] = useState({
+const Signup = () => {
+    const [signupFormData, setSignupFormData] = useState({
+        firstName: "",
+        lastName: "",
         email: "",
         password: ""
     });
@@ -23,42 +25,64 @@ const Login = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
-        setLoginFormData({
-            ...loginFormData,
+        setSignupFormData({
+            ...signupFormData,
             [name]: value
         })
     };
 
-    const onLoginFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSignupFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(loginFormData);
+        console.log(signupFormData);
     };
 
-    return (
-        <>
-            <div className={styles.wrapper}>
+  return (
+    <>
+      <div className={styles.wrapper}>
                 <div className={styles.container}>
-                    <h1 className={styles.login__title}>Login</h1>
-                    <Form onSubmit={onLoginFormSubmit} className={styles.login__form}>
+                    <h1 className={styles.signup__title}>Register</h1>
+                    <Form onSubmit={onSignupFormSubmit} className={styles.signup__form}>
                         <div className={styles.inputFields__container}>
                             <InputField
-                                id="userLoginEmailInput"
-                                label="Email"
-                                name="email"
-                                type="email"
+                                id="userSignupFirstNameInput"
+                                label="First Name"
+                                name="firstName"
+                                type="text"
                                 className={styles.inputField}
-                                value={loginFormData.email}
+                                value={signupFormData.firstName}
                                 onChange={handleChange}
                                 autoComplete="off"
                                 required={true}
                             />
                             <InputField
-                                id="userLoginPasswordInput"
+                                id="userSignupLastNameInput"
+                                label="Last Name"
+                                name="lastName"
+                                type="text"
+                                className={styles.inputField}
+                                value={signupFormData.lastName}
+                                onChange={handleChange}
+                                autoComplete="off"
+                                required={true}
+                            />
+                            <InputField
+                                id="userSignupEmailInput"
+                                label="Email"
+                                name="email"
+                                type="email"
+                                className={styles.inputField}
+                                value={signupFormData.email}
+                                onChange={handleChange}
+                                autoComplete="off"
+                                required={true}
+                            />
+                            <InputField
+                                id="userSignupPasswordInput"
                                 label="Password"
                                 name="password"
                                 type={showPassword ? 'text' : 'password'}
                                 className={styles.inputField}
-                                value={loginFormData.password}
+                                value={signupFormData.password}
                                 onChange={handleChange}
                                 required={true}
                             />
@@ -86,13 +110,13 @@ const Login = () => {
                                     </InputAdornment>
                                 }
                             /> */}
-                            <CustomButton variant='contained' color='success' label='Login' type="submit" className={styles.login__button} />
+                            <CustomButton variant='contained' color='success' label='Register' type="submit" className={styles.signup__button} />
                         </div>
                     </Form>
                 </div>
             </div>
-        </>
-    )
+    </>
+  )
 }
 
-export default Login
+export default Signup

@@ -15,12 +15,12 @@
     border-radius: 1rem;
 }
 
-.login__title{
+.signup__title{
     text-align: center;
     font-size: 50px;
 }
 
-.login__form{
+.signup__form{
     display: flex;
     flex-direction: column;
 }
@@ -35,6 +35,6 @@
     margin: 1rem 0rem;
 }
 
-.login__button{
+.signup__button{
     margin: 2rem 0;
 }
