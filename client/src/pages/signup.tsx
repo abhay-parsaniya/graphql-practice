@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
+import { useMutation } from '@apollo/client'
+
 import styles from '../styles/Signup.module.css'
 
 import Form from '../components/Form'
 import InputField from '../components/InputField'
-import { IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
 import CustomButton from '../components/CustomButton'
+import CustomizedSnackbar from '../components/CustomizedSnackbar'
+
+import { IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material'
 import { Visibility, VisibilityOff } from '@mui/icons-material'
+
+import { SIGNUP_USER } from '../graphql/gqlquries/mutations'
 
 const Signup = () => {
     const [signupFormData, setSignupFormData] = useState({
@@ -14,6 +20,8 @@ const Signup = () => {
         email: "",
         password: ""
     });
+
+    const [signupUser, { loading, error, data }] = useMutation(SIGNUP_USER);
 
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -24,7 +32,7 @@ const Signup = () => {
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = e.target;
+        const { name, value } = e.target;
         setSignupFormData({
             ...signupFormData,
             [name]: value
@@ -34,12 +42,24 @@ const Signup = () => {
     const onSignupFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(signupFormData);
+        signupUser({
+            variables: {
+                userNew: signupFormData
+            }
+        });
+        
     };
 
-  return (
-    <>
-      <div className={styles.wrapper}>
+    return (
+        <>
+            <div className={styles.wrapper}>
                 <div className={styles.container}>
+                    {
+                        error && <CustomizedSnackbar message={error.message} severity={'error'} />
+                    }
+                    {
+                        data && data.user && <CustomizedSnackbar message={`${data.user.firstName} is sign up successfully !!`} severity={'success'} />
+                    }
                     <h1 className={styles.signup__title}>Register</h1>
                     <Form onSubmit={onSignupFormSubmit} className={styles.signup__form}>
                         <div className={styles.inputFields__container}>
@@ -115,8 +135,8 @@ const Signup = () => {
                     </Form>
                 </div>
             </div>
-    </>
-  )
+        </>
+    )
 }
 
-export default Signup
+export default Signup;
