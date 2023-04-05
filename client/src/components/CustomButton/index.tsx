@@ -5,14 +5,15 @@ interface propTypes{
     variant: "text" | "outlined" | "contained" | undefined,
     color: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined,
     label: string,
-    type: "button" | "submit" | "reset"
+    type: "button" | "submit" | "reset",
+    className: string
 }
 
 const CustomButton = (props: propTypes) => {
-    const {variant, color, label, type} = props;
+    const {variant, color, label, type, className} = props;
     return (
         <>
-            <Button variant={variant} color={color} type={type}>
+            <Button variant={variant} color={color} type={type} className={className}>
                 {label}
             </Button>
         </>

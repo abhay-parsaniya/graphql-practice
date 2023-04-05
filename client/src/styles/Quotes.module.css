@@ -1,0 +1,23 @@
+.quotes__container{
+    background-color: aliceblue;
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quote{
+    background-color: rgb(250, 217, 217);
+    padding: 0 1rem;
+    width: 50vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem;
+}
+
+.quotes__heading{
+    text-align: center;
+}

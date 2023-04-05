@@ -1,0 +1,24 @@
+.createQuote__container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createQuote__form{
+    background-color: rgb(191, 222, 250);
+    padding: 2rem;
+    height: 50vh;
+    width: 50vw;
+    border-radius: 2rem;
+    text-align: center;
+}
+
+.createQuote__textarea{
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.createQuote__button{
+    margin: 1rem 0;
+}
